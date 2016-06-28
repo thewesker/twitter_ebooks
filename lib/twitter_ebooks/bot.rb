@@ -302,10 +302,6 @@ module Ebooks
           return if ev.source.id == @user.id
           log "Followed by #{ev.source.screen_name}"
           fire(:follow, ev.source)
-        when :favorite, :unfavorite
-          return if ev.source.id == @user.id # Ignore our own favorites
-          log "@#{ev.source.screen_name} #{ev.name.to_s}d: #{ev.target_object.text}"
-          fire(ev.name, ev.source, ev.target_object)
         when :user_update
           update_myself ev.source
         end
